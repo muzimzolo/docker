@@ -1,0 +1,20 @@
+                   Running a container
+                   
+ To push the image to docker hub: 
+ docker login & follow the prompts
+ docker image tag web1 <username/<image-name:<tag>> i.e. docker image tag web1 muzidebugger/web1:latest
+ verify it by running docker image ls
+ Push the image using docker image push <username/<image-name:<tag>> i.e docker image push muzidebugger/web1:latest
+ Remove the image using docker image rm -f <image-id>
+ pull the image from the repository: docker pull <username>/<image> i.e. docker pull muzidebugger/web1:latest
+ Confirm that it was downloaded: docker image ls
+ To rename the image by removing the docker hub username tag: docker tag muzidebugger/web1 web1
+ To run a container: docker container run -it -p 5000:5000 -e FLASK_APP=app.py web1
+ docker container run -it -p <docker host><app port> -e <><app name> <image name>
+ "e" stands for environment variable. You can pass multiple e flags if you want to run in multiple environment variables
+ app.py relates to the flask app that we created - app.py
+ Run our app on http://localhost:5000
+ To remove the image: docker container run -it --rm --name web1 -p 5000:5000 -e FLASK_APP=app.py web1 
+ Docker logs in real time: docker container logs -f <image> i.e docker container logs -f web1
+ Stats: docker container stats
+ Restart on failure if the image gets interrupted during bootup: docker container run -it --rm --name web1 -p 5000:5000 -e FLASK_APP=app.py web1 -d --restart on-failure web1
